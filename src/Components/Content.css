@@ -6,6 +6,7 @@
     gap: 2rem;
 }
 
+
 .search {
     background-color: white;
     width: 30%;
@@ -15,7 +16,6 @@
     align-items: center;
     padding-left: 1rem;
     box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
-
 }
 
 @media (max-width: 1280px) {
@@ -42,6 +42,41 @@
     width: 100%;
     padding: 0rem 5rem 0rem 5rem;
     color: #111517;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    gap: 1rem 3.5%;
+}
+
+@media (max-width: 1320px) {
+    .listSection {
+        grid-template-columns: 23% 23% 23%;
+        gap: 1rem 9.1%;
+    }
+}
+
+@media (max-width: 970px) {
+    .listSection {
+        grid-template-columns: 33% 33%;
+        gap: 1rem 17%;
+    }
+}
+
+@media (max-width: 720px) {
+    .listSection {
+        grid-template-columns: 78%;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 494px) {
+    .listSection {
+        justify-content: center;
+        padding: 0px;
+    }
+
+    .menuSection {
+        padding: 3rem 1rem;
+    }
 }
 
 .listSection > li {
@@ -51,7 +86,6 @@
     margin-bottom: 2rem;
     border-radius: 10px 10px 5px 5px;
     overflow: hidden;
-    width: 17%;
 }
 
 .flags {
