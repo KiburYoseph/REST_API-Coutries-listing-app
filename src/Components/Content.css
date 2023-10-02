@@ -1,0 +1,57 @@
+.menuSection {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 5rem;
+}
+
+.search {
+    background-color: black;
+    width: 30%;
+    height: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search > input {
+    width: 85%;
+    height: 100%;
+    border: none;
+    padding-left: 1.6rem;
+}
+
+.listSection {
+    width: 100%;
+    padding: 0rem 5rem 0rem 5rem;
+}
+
+.listSection > li {
+    box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
+    background-color: white;
+    list-style: none;
+    margin-bottom: 2rem;
+    border-radius: 10px 10px 5px 5px;
+    overflow: hidden;
+    width: 17%;
+}
+
+.flags {
+    height: 12rem;
+    width: 100%;
+    background-color: black;
+}
+
+.countryInfo {
+    padding: 0rem 1.2rem 2.3rem 1.8rem;
+}
+
+.countryInfo > h2 {
+    margin-top: 1.7rem;
+    font-size: 1.2rem;
+}
+
+.countryInfo > p {
+    font-size: 0.9rem;
+}
+

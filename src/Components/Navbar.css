@@ -1,0 +1,44 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 5rem;
+    margin: 0px;
+    box-shadow: 1px 1px 20px 1px rgb(214, 214, 214);
+    background-color: white;
+}
+
+.darkModeBtn {
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1rem;
+    transition: 300ms;
+    border-radius: 18px;
+    padding: 0.6rem;
+    cursor: pointer;
+}
+
+.moon {
+    transform: rotate(-20deg);
+    height: 1.2rem;
+    transition: 300ms;
+}
+
+.darkModeBtn:hover {
+    background-color: #111517;
+    color: white;
+}
+
+.darkModeBtn:hover .moon {
+    color: white !important;
+}
+
+
+nav > h1 {
+    line-height: 1;
+    color: #111517;
+}
