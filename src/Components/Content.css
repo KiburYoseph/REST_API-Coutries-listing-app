@@ -1,3 +1,29 @@
+.allContent {
+    width: 300vw;
+    display: flex;
+    justify-content: space-between;
+    transition: 500ms;
+    overflow-x: hidden;
+}
+
+.allContent.darktrue {
+    background-color: hsl(207, 26%, 17%);
+}
+
+.detailstrue {
+    transform: translateX(-63.8%);
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.fullView {
+    width: 100vw;
+}
+
+.focusedView {
+    width: 100vw;
+}
+
 .menuSection {
     display: flex;
     justify-content: space-between;
@@ -18,6 +44,11 @@
     box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
 }
 
+.search.darktrue {
+    background-color: hsl(209, 23%, 22%);
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
+}
+
 @media (max-width: 1280px) {
     .search {
         width: 50%;
@@ -33,6 +64,11 @@
     color: #111517;
 }
 
+.search.darktrue > input {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+}
+
 .search > input:focus {
     outline: none;
 }
@@ -45,6 +81,14 @@
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;
     gap: 1rem 3.5%;
+}
+
+.listSection.darktrue {
+    color: white;
+}
+
+.listSection.darktrue > li {
+    background-color: hsl(209, 23%, 22%);
 }
 
 @media (max-width: 1320px) {
@@ -90,6 +134,10 @@
     cursor: pointer;
 }
 
+.listSection.darktrue > li {
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
+}
+
 .listSection > li:hover {
     transform: scale(1.1);
 }
@@ -111,6 +159,11 @@
 
 .countryInfo > p {
     font-size: 0.9rem;
+    line-height: 1;
+}
+
+.countryInfo > p > strong {
+    font-weight: 600;
 }
 
 .dropDownBtn {
@@ -126,6 +179,12 @@
     cursor: pointer;
     position: relative;
     box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
+}
+
+.dropDownBtn.darktrue {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
 }
 
 @media (max-width: 710px) {
@@ -154,7 +213,13 @@
     padding-bottom: 1rem;
     top: 100%;
     box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
+    color: hsl(200, 15%, 8%);
+}
 
+.dropDownMenu.darktrue {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
 }
 
 .dropDownMenu > li {
@@ -188,8 +253,9 @@
     background-color: white;
     color: hsl(200, 15%, 8%);
     border: none;
+    border-radius: 5px;
     box-shadow: 1px 1px 10px 1px rgb(209, 209, 209);
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 2.3rem;
     font-size: 1rem;
     font-weight: 100;
     display: flex;
@@ -198,6 +264,12 @@
     align-items: center;
     transition: 200ms;
     cursor: pointer;
+}
+
+.backBtn.darktrue {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
 }
 
 .backBtn:hover {
@@ -223,6 +295,10 @@
     flex-direction: column;
 }
 
+.detailContentSection.darktrue {
+    color: white;
+}
+
 .detailContentSection > h1 {
     font-size: 2rem;
     margin-bottom: 0.7rem;
@@ -239,7 +315,6 @@
 @media (max-width: 1360px) {
     .detailsSection {
         gap: 2rem;
-        justify-content: space-between;
     }
     
     .detailedInfo {
@@ -248,26 +323,38 @@
     }   
     
     .detailImageSection {
-        width: 40rem;
+        width: 35rem;
         height: 25rem;
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
+    .backBtn {
+        margin-left: 4rem;
+    }
+
+    .detailstrue {
+        height: 150vh;
+    }
+
     .detailsSection {
         flex-direction: column;
     }
 
     .detailImageSection {
-        width: 100%;
+        width: 90%;
     }
 
     .detailContentSection {
-        width: 100%;
+        width: 90%;
     }
 }
 
 @media (max-width: 650px) {
+    .detailsSection {
+        padding-left: 2rem;
+    }
+
     .detailedInfo {
         flex-direction: column;
     }
@@ -283,9 +370,18 @@
     }
 }
 
-@media (max-width: 535px) {
+@media (max-width: 535px) { 
+    .backBtn {
+        margin-left: 1rem;
+    }
+
+    .detailImageSection {
+        width: 100%;
+    }
+
     .focusedView {
-        padding: 1rem;
+        padding-left: 26rem;
+        padding-right: 4.5rem;
     }
 }
 
@@ -317,10 +413,12 @@
     cursor: pointer;
 }
 
-.borderCountries:hover {
-    transform: scale(1.1);
+.borderCountries.darktrue {
+    background-color: hsl(209, 23%, 22%);
+    color: white;
+    box-shadow: 1px 1px 10px 1px hsl(210, 26%, 15%);
 }
 
-.fullView {
-    display: none;
+.borderCountries:hover {
+    transform: scale(1.1);
 }
