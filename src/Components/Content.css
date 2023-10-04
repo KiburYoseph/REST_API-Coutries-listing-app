@@ -236,6 +236,59 @@
     margin-bottom: 2.7rem;
 }
 
+@media (max-width: 1360px) {
+    .detailsSection {
+        gap: 2rem;
+        justify-content: space-between;
+    }
+    
+    .detailedInfo {
+        gap: 1rem;
+        justify-content: space-between;
+    }   
+    
+    .detailImageSection {
+        width: 40rem;
+        height: 25rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .detailsSection {
+        flex-direction: column;
+    }
+
+    .detailImageSection {
+        width: 100%;
+    }
+
+    .detailContentSection {
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .detailedInfo {
+        flex-direction: column;
+    }
+
+    .extraDetail {
+        position: relative;
+        margin-top: 2rem;
+    }
+
+    .extraDetail > p {
+        position: absolute;
+        bottom: 2rem;
+    }
+}
+
+@media (max-width: 535px) {
+    .focusedView {
+        padding: 1rem;
+    }
+}
+
 .detailPart1 > p > strong , .detailPart2 > p > strong {
     font-weight: 600;
 }
@@ -269,5 +322,5 @@
 }
 
 .fullView {
-    display: block;
+    display: none;
 }
