@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Content = (props) => {
 
@@ -11,6 +11,60 @@ const Content = (props) => {
     const [menuState, setMenuState] = useState(false)
     const [filterState, setFilterState] = useState('none')
     const [detailState, setDetailState] = useState(false)
+    const [countryList, setCountryList] = useState([])
+
+    const URL = 'https://restcountries.com/v3.1/independent?status=true'
+    
+
+   useEffect(() => {
+        fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            let countryData
+            
+            countryData = data.map(item => 
+                {
+                    let individualLanguages
+                    
+                    for (const key in item.languages) {
+                        individualLanguages = item.languages[key]
+                    }
+
+                    let individualCurrencies
+
+                    for (const key in item.currencies) {
+                        individualCurrencies = key
+                    }
+
+                    let nativeNameString = ""
+                    
+                    for (const key in item.name.nativeName) {
+                        nativeNameString += `${key}: ${item.name.nativeName[key].official}, `
+                    }
+
+                    let nativeNames
+
+                    nativeNames = nativeNameString.slice(0, -2);
+
+                    return ({
+                commonName: item.name.common,
+                officialName: item.name.official,
+                nativeName: nativeNames,
+                population: item.population,
+                capital: item.capital[0],
+                region: item.region,
+                subRegion: item.subregion,
+                topLevelDomain: item.tld[0],
+                languages: individualLanguages,
+                currencies: individualCurrencies,
+                flag: item.flag,
+                id: crypto.randomUUID()
+            })}
+            )
+            setCountryList(countryData)
+        })
+    }, [])
+
 
     return (
         <>
@@ -37,141 +91,20 @@ const Content = (props) => {
                 </section>
 
                 <ul className={`listSection dark${props.dark}`}>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
+                    {countryList.map(country => {
+                        return (<li key={country.id} onClick={() => setDetailState(!detailState)}>
+                        <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
                         <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
+                            <h2>{country.commonName}</h2>
+                            <p><strong>Population:</strong> {country.population}</p>
+                            <p><strong>Region:</strong> {country.region}</p>
+                            <p><strong>Capital:</strong> {country.capital}</p>
                         </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
-                    <li onClick={() => setDetailState(!detailState)}>
-                        <div className='flags'></div>
-                        <div className='countryInfo'>
-                            <h2>Country Name</h2>
-                            <p><strong>Population:</strong> 123345436</p>
-                            <p><strong>Region:</strong> Place</p>
-                            <p><strong>Capital:</strong> Another Place</p>
-                        </div>
-                    </li>
+                    </li>)
+                    })}
+                    
+                    
+                    
                 </ul>
             </div>
             <div className='focusedView'>
