@@ -13,9 +13,12 @@ const App = () => {
 
   return (
     <>
-      <Navbar onClick={handleDark} dark={darkmode}/>
-      <Content dark={darkmode}/>
+      <main className='completeContainer'>
+        <Navbar onClick={handleDark} dark={darkmode}/>
+        <Content dark={darkmode}/>
+      </main>
     </>
+
   )
 }
 

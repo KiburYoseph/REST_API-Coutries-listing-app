@@ -12,6 +12,8 @@ const Content = (props) => {
     const [filterState, setFilterState] = useState('none')
     const [detailState, setDetailState] = useState(false)
     const [countryList, setCountryList] = useState([])
+    const [display, setDisplay] = useState(true)
+    const [countryDetails, setCountryDetails] = useState([])
 
     const URL = 'https://restcountries.com/v3.1/independent?status=true'
     
@@ -39,7 +41,7 @@ const Content = (props) => {
                     let nativeNameString = ""
                     
                     for (const key in item.name.nativeName) {
-                        nativeNameString += `${key}: ${item.name.nativeName[key].official}, `
+                        nativeNameString += `${item.name.nativeName[key].official}, `
                     }
 
                     let nativeNames
@@ -65,11 +67,42 @@ const Content = (props) => {
         })
     }, [])
 
+    const handleMainClick = (country) => {
+        let detailContainer = []
+
+        detailContainer = ({
+            commonName: country.commonName,
+            officialName: country.officialName,
+            nativeName: country.nativeName,
+            population: country.population,
+            capital: country.capital,
+            region: country.region,
+            subRegion: country.subRegion,
+            topLevelDomain: country.topLevelDomain,
+            languages: country.languages,
+            currencies: country.currencies,
+            flag: country.flag,
+            id: crypto.randomUUID()
+        })
+
+        setCountryDetails(detailContainer)
+
+        setDetailState(!detailState)
+        handleDisplay()
+    }
+
+
+    const handleDisplay = () => {
+        setTimeout(() => {
+            setDisplay(!display)
+        }, 200);
+    }
+
 
     return (
         <>
         <main className={`allContent details${detailState} dark${props.dark}`}>
-            <div className='fullView'>
+            <div className={`fullView details${detailState} none${!display}`}>
                 <section className='menuSection'>
                     <div className={`search dark${props.dark}`}>
                     {props.dark ? <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "hsl(0, 0%, 100%)"}} className='magnifyingGlass'/> : <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "hsl(0, 0%, 52%)"}} className='magnifyingGlass'/>}
@@ -92,7 +125,7 @@ const Content = (props) => {
 
                 <ul className={`listSection dark${props.dark}`}>
                     {countryList.map(country => {
-                        return (<li key={country.id} onClick={() => setDetailState(!detailState)}>
+                        return (<li key={country.id} onClick={() => handleMainClick(country)}>
                         <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
                         <div className='countryInfo'>
                             <h2>{country.commonName}</h2>
@@ -107,24 +140,27 @@ const Content = (props) => {
                     
                 </ul>
             </div>
-            <div className='focusedView'>
-                <button className={`backBtn dark${props.dark}`} onClick={() => setDetailState(!detailState)}>{props.dark ? <FontAwesomeIcon style={{color: "#ffffff"}}  icon={faArrowLeft} className='leftArrow'/> : <FontAwesomeIcon style={{color: "hsl(200, 15%, 8%)"}}  icon={faArrowLeft} className='leftArrow'/>}Back</button>
+            <div className={`focusedView details${detailState} none${display}`}>
+                <button className={`backBtn dark${props.dark}`} onClick={() => {
+                            setDetailState(!detailState)
+                            handleDisplay()
+                        }}>{props.dark ? <FontAwesomeIcon style={{color: "#ffffff"}}  icon={faArrowLeft} className='leftArrow'/> : <FontAwesomeIcon style={{color: "hsl(200, 15%, 8%)"}}  icon={faArrowLeft} className='leftArrow'/>}Back</button>
                 <section className='detailsSection'>
-                    <div className='detailImageSection'></div>
+                    <div className='detailImageSection'><div className='detailInnerImage'>{countryDetails.flag}</div></div>
                     <div className={`detailContentSection dark${props.dark}`}>
                         <h1>Country Name</h1>
                         <div className='detailedInfo'>
                             <div className='detailPart1'>
-                                <p><strong>Native Name:</strong> something</p>
-                                <p><strong>Population:</strong> something</p>
-                                <p><strong>Region:</strong> something</p>
-                                <p><strong>Sub Region:</strong> something</p>
-                                <p><strong>Capital:</strong> something</p>
+                                <p><strong>Native Name:</strong> {countryDetails.nativeName}</p>
+                                <p><strong>Population:</strong> {countryDetails.population}</p>
+                                <p><strong>Region:</strong> {countryDetails.region}</p>
+                                <p><strong>Sub Region:</strong> {countryDetails.subRegion}</p>
+                                <p><strong>Capital:</strong> {countryDetails.capital}</p>
                             </div>
                             <div className='detailPart2'>
-                                <p><strong>Top Level Domain:</strong> something</p>
-                                <p><strong>Currencies:</strong> something</p>
-                                <p><strong>Languages:</strong> something</p>
+                                <p><strong>Top Level Domain:</strong> {countryDetails.topLevelDomain}</p>
+                                <p><strong>Currencies:</strong> {countryDetails.currencies}</p>
+                                <p><strong>Languages:</strong> {countryDetails.languages}</p>
                             </div>
                         </div>
                         <div className='extraDetail'>
