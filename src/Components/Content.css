@@ -348,11 +348,12 @@
 
 .detailedInfo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     gap: 10rem;
     margin-bottom: 2.7rem;
 }
+
 
 @media (max-width: 1360px) {
     .focusedView {
@@ -476,6 +477,14 @@
 
 .extraDetail > p > strong {
     font-weight: 600;
+}
+
+.bordersContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    flex-wrap: wrap;
 }
 
 .borderCountries {

@@ -60,10 +60,13 @@ const Content = (props) => {
                 languages: individualLanguages,
                 currencies: individualCurrencies,
                 flag: item.flag,
-                id: crypto.randomUUID()
+                id: crypto.randomUUID(),
+                borders: item.borders
             })}
             )
             setCountryList(countryData)
+            console.log(data)
+            console.log(countryData)
         })
     }, [])
 
@@ -82,7 +85,8 @@ const Content = (props) => {
             languages: country.languages,
             currencies: country.currencies,
             flag: country.flag,
-            id: crypto.randomUUID()
+            id: crypto.randomUUID(),
+            borders: country.borders
         })
 
         setCountryDetails(detailContainer)
@@ -165,9 +169,12 @@ const Content = (props) => {
                         </div>
                         <div className='extraDetail'>
                             <p><strong>Border Countries:</strong></p>
-                            <button className={`borderCountries dark${props.dark}`}>Country 1</button>
-                            <button className={`borderCountries dark${props.dark}`}>Country 1</button>
-                            <button className={`borderCountries dark${props.dark}`}>Country 1</button>
+                            <div className='bordersContainer'>
+                            {countryDetails.borders.map(items => {
+                               return <button className={`borderCountries dark${props.dark}`}>{items}</button>
+                            })}
+                            </div>
+                            
                         </div>
                     </div>
                 </section>
