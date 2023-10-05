@@ -22,8 +22,9 @@ const Content = (props) => {
         fetch(URL)
         .then(response => response.json())
         .then(data => {
-            let countryData
             
+            let countryData
+
             countryData = data.map(item => 
                 {
                     let individualLanguages
@@ -102,7 +103,7 @@ const Content = (props) => {
         }, 200);
     }
 
-
+    console.log(countryDetails)
     return (
         <>
         <main className={`allContent details${detailState} dark${props.dark}`}>
@@ -144,41 +145,48 @@ const Content = (props) => {
                     
                 </ul>
             </div>
+            {(countryDetails == "") ? null : 
             <div className={`focusedView details${detailState} none${display}`}>
-                <button className={`backBtn dark${props.dark}`} onClick={() => {
-                            setDetailState(!detailState)
-                            handleDisplay()
-                        }}>{props.dark ? <FontAwesomeIcon style={{color: "#ffffff"}}  icon={faArrowLeft} className='leftArrow'/> : <FontAwesomeIcon style={{color: "hsl(200, 15%, 8%)"}}  icon={faArrowLeft} className='leftArrow'/>}Back</button>
-                <section className='detailsSection'>
-                    <div className='detailImageSection'><div className='detailInnerImage'>{countryDetails.flag}</div></div>
-                    <div className={`detailContentSection dark${props.dark}`}>
-                        <h1>Country Name</h1>
-                        <div className='detailedInfo'>
-                            <div className='detailPart1'>
-                                <p><strong>Native Name:</strong> {countryDetails.nativeName}</p>
-                                <p><strong>Population:</strong> {countryDetails.population}</p>
-                                <p><strong>Region:</strong> {countryDetails.region}</p>
-                                <p><strong>Sub Region:</strong> {countryDetails.subRegion}</p>
-                                <p><strong>Capital:</strong> {countryDetails.capital}</p>
-                            </div>
-                            <div className='detailPart2'>
-                                <p><strong>Top Level Domain:</strong> {countryDetails.topLevelDomain}</p>
-                                <p><strong>Currencies:</strong> {countryDetails.currencies}</p>
-                                <p><strong>Languages:</strong> {countryDetails.languages}</p>
-                            </div>
+            <button className={`backBtn dark${props.dark}`} onClick={() => {
+                        setDetailState(!detailState)
+                        handleDisplay()
+                    }}>{props.dark ? <FontAwesomeIcon style={{color: "#ffffff"}}  icon={faArrowLeft} className='leftArrow'/> : <FontAwesomeIcon style={{color: "hsl(200, 15%, 8%)"}}  icon={faArrowLeft} className='leftArrow'/>}Back</button>
+            <section className='detailsSection'>
+                <div className='detailImageSection'><div className='detailInnerImage'>{countryDetails.flag}</div></div>
+                <div className={`detailContentSection dark${props.dark}`}>
+                    <h1>Country Name</h1>
+                    <div className='detailedInfo'>
+                        <div className='detailPart1'>
+                            <p><strong>Native Name:</strong> {countryDetails.nativeName}</p>
+                            <p><strong>Population:</strong> {countryDetails.population}</p>
+                            <p><strong>Region:</strong> {countryDetails.region}</p>
+                            <p><strong>Sub Region:</strong> {countryDetails.subRegion}</p>
+                            <p><strong>Capital:</strong> {countryDetails.capital}</p>
                         </div>
-                        <div className='extraDetail'>
-                            <p><strong>Border Countries:</strong></p>
-                            <div className='bordersContainer'>
-                            {countryDetails.borders.map(items => {
-                               return <button className={`borderCountries dark${props.dark}`}>{items}</button>
-                            })}
-                            </div>
-                            
+                        <div className='detailPart2'>
+                            <p><strong>Top Level Domain:</strong> {countryDetails.topLevelDomain}</p>
+                            <p><strong>Currencies:</strong> {countryDetails.currencies}</p>
+                            <p><strong>Languages:</strong> {countryDetails.languages}</p>
                         </div>
                     </div>
-                </section>
-            </div>
+                    <div className='extraDetail'>
+                        <p><strong>Border Countries:</strong></p>
+                       {(countryDetails.borders === undefined) ? null : 
+                       <div className='bordersContainer'>
+                       {countryDetails.borders.map(items => {
+                          return <button className={`borderCountries dark${props.dark}`}>{items}</button>
+                       })}
+                       </div>} 
+                        
+                        
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+            }
+            
+            
         </main>
         </>
     )
