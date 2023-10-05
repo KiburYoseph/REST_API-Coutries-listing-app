@@ -53,7 +53,7 @@ const Content = (props) => {
                 commonName: item.name.common,
                 officialName: item.name.official,
                 nativeName: nativeNames,
-                population: item.population,
+                population: item.population.toLocaleString(),
                 capital: item.capital[0],
                 region: item.region,
                 subRegion: item.subregion,
@@ -91,7 +91,6 @@ const Content = (props) => {
         })
 
         setCountryDetails(detailContainer)
-
         setDetailState(!detailState)
         handleDisplay()
     }
