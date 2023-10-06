@@ -25,7 +25,7 @@
 .focusedView {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: max-content;
     transition: 300ms;
     transform: translateX(100%);
     padding-bottom: 1rem !important;
@@ -424,12 +424,16 @@
     .extraDetail {
         position: relative;
         margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
     }
 
     .extraDetail > p {
-        position: absolute;
-        bottom: 2rem;
+        margin-top: -3rem;
     }
+
 }
 
 @media (max-width: 535px) { 
@@ -452,8 +456,7 @@
 @media (max-width: 365px) {
     .extraDetail > p {
         position: relative;
-        margin-bottom: -1.5rem;
-        margin-top: 0px;
+        margin-top: 1rem;
     }
 
     .extraDetail {
