@@ -410,6 +410,14 @@
 
 @media (max-width: 650px) {
 
+    .detailInnerImage {
+        font-size: 20rem;
+    }
+
+    .innerFlags {
+        font-size: 20rem;
+    }
+
     .focusedView {
         padding-left: 0rem; 
     }
