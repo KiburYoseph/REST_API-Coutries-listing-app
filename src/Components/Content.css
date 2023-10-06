@@ -512,3 +512,24 @@
 .nonetrue {
     display: none !important;
 }
+
+.noResults {
+    font-size: 3rem;
+    padding-left: 5rem; 
+}
+
+.noResults.darktrue {
+    color: white;
+}
+
+@media (max-width: 495px) {
+    .noResults {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width:350px) {
+    .noResults {
+        font-size: 1.5rem;
+    }
+}
