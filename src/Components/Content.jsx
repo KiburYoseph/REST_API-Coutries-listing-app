@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Content = (props) => {
 
@@ -15,6 +15,7 @@ const Content = (props) => {
     const [display, setDisplay] = useState(true)
     const [countryDetails, setCountryDetails] = useState([])
     const [searchResults, setSearchResults] = useState(true)
+    const focusedRef = useRef(null)
 
     const URL = 'https://restcountries.com/v3.1/independent?status=true'
     
@@ -63,6 +64,7 @@ const Content = (props) => {
                 currencies: individualCurrencies,
                 flag: item.flag,
                 id: crypto.randomUUID(),
+                detialsid: crypto.randomUUID(),
                 borders: item.borders,
                 accronym: item.cca3
             })}
@@ -70,6 +72,13 @@ const Content = (props) => {
             setCountryList(fullCountriesData)
         })
     }, [])
+
+    const scrollToTop = () => {
+        focusedRef.current.scrollTo({
+            top:0,
+            behavior: "auto"
+        })
+    }
 
     const handleMainClick = (country) => {
         let detailContainer = []
@@ -86,6 +95,7 @@ const Content = (props) => {
             languages: country.languages,
             currencies: country.currencies,
             flag: country.flag,
+            detialsid: crypto.randomUUID(),
             id: crypto.randomUUID(),
             borders: country.borders
         })
@@ -93,6 +103,7 @@ const Content = (props) => {
         setCountryDetails(detailContainer)
         setDetailState(!detailState)
         handleDisplay()
+        scrollToTop()
     }
 
 
@@ -119,6 +130,7 @@ const Content = (props) => {
                     currencies: country.currencies,
                     flag: country.flag,
                     id: crypto.randomUUID(),
+                    detialsid: crypto.randomUUID(),
                     borders: country.borders
                 })
                 return setCountryDetails(detailContainer)
@@ -175,6 +187,7 @@ const Content = (props) => {
                 currencies: individualCurrencies,
                 flag: item.flag,
                 id: crypto.randomUUID(),
+                detialsid: crypto.randomUUID(),
                 borders: item.borders,
                 accronym: item.cca3
             })}
@@ -250,6 +263,7 @@ const Content = (props) => {
                         currencies: individualCurrencies,
                         flag: item.flag,
                         id: crypto.randomUUID(),
+                        detialsid: crypto.randomUUID(),
                         borders: item.borders,
                         accronym: item.cca3
                     })}
@@ -432,7 +446,7 @@ const Content = (props) => {
 
             </div>
             {(countryDetails == "") ? null : 
-            <div className={`focusedView details${detailState} none${display}`}>
+            <div ref={focusedRef} className={`focusedView details${detailState} none${display}`}>
             <button className={`backBtn dark${props.dark}`} onClick={() => {
                         setDetailState(!detailState)
                         handleDisplay()
@@ -460,7 +474,7 @@ const Content = (props) => {
                        {(countryDetails.borders === undefined) ? null : 
                        <div className='bordersContainer'>
                        {countryDetails.borders.map(items => {
-                          return <button onClick={() => handleBorders(items)} className={`borderCountries dark${props.dark}`}>{items}</button>
+                          return <button key={countryDetails.detailsid} onClick={() => handleBorders(items)} className={`borderCountries dark${props.dark}`}>{items}</button>
                        })}
                        </div>} 
                     </div>

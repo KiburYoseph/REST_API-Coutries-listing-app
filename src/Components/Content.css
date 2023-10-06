@@ -30,7 +30,7 @@
 .focusedView {
     position: absolute;
     width: 100%;
-    height: 180vh!important;
+    height: 100vh!important;
     transition: 300ms;
     transform: translateX(100%);
     margin-bottom: 10rem !important;
@@ -406,6 +406,10 @@
         margin-left: 4rem;
     }
 
+    .focusedView {
+        height: 280vh !important;;
+    }
+
     .detailstrue {
         height: 150vh;
     }
@@ -445,7 +449,6 @@
     .focusedView {
         padding-left: 0rem; 
         padding-top: 2rem;
-        height: 280vh !important;
     }
     .detailsSection {
         padding-left: 0rem;
