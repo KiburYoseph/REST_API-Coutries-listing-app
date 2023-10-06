@@ -426,6 +426,7 @@
 
     .focusedView {
         padding-left: 0rem; 
+        height: 250vh !important;
     }
     .detailsSection {
         padding-left: 0rem;
