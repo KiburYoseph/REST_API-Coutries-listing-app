@@ -28,7 +28,7 @@
     height: max-content;
     transition: 300ms;
     transform: translateX(100%);
-    padding-bottom: 1rem !important;
+    padding-bottom: 5rem !important;
 }
 
 .focusedView.detailstrue {
