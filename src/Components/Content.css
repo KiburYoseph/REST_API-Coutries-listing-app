@@ -217,6 +217,7 @@
     background-color: white;
     border: none;
     padding: 1.5rem;
+    width: 14rem;
     display: flex;
     justify-content: center;
     align-items: center;
