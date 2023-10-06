@@ -315,6 +315,12 @@
     margin-top: 6rem;
 }
 
+@media (max-width: 1510px) {
+    .detailsSection {
+        gap: 5rem;
+    }
+}
+
 .detailImageSection {
     background-color: black;
     height: 27rem;
@@ -351,7 +357,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 10rem;
+    gap: 1rem;
     margin-bottom: 2.7rem;
 }
 
@@ -395,6 +401,14 @@
 
     .detailContentSection {
         width: 80%;
+    }
+
+    .detailedInfo {
+        justify-content: space-around;
+    }
+
+    .detailPart1 > p {
+        width: 70% !important;
     }
 }
 
@@ -464,6 +478,16 @@
 
 .detailPart1 > p > strong , .detailPart2 > p > strong {
     font-weight: 600;
+}
+
+.detailPart1 > p {
+    width: 30rem;
+}
+
+@media(max-width: 1287px) {
+    .detailPart1 > p {
+        width: 20rem;
+    }
 }
 
 .extraDetail {
