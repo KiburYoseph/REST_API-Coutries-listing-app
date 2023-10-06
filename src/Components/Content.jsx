@@ -23,9 +23,9 @@ const Content = (props) => {
         .then(response => response.json())
         .then(data => {
             
-            let countryData
+            let fullCountriesData
 
-            countryData = data.map(item => 
+            fullCountriesData = data.map(item => 
                 {
                     let individualLanguages
                     
@@ -62,12 +62,11 @@ const Content = (props) => {
                 currencies: individualCurrencies,
                 flag: item.flag,
                 id: crypto.randomUUID(),
-                borders: item.borders
+                borders: item.borders,
+                accronym: item.cca3
             })}
             )
-            setCountryList(countryData)
-            console.log(data)
-            console.log(countryData)
+            setCountryList(fullCountriesData)
         })
     }, [])
 
@@ -102,7 +101,34 @@ const Content = (props) => {
         }, 200);
     }
 
-    console.log(countryDetails)
+    const handleBorders = (items) => {
+        let detailContainer = []
+        countryList.map(country => {
+            if (country.accronym == items) {
+                detailContainer = ({
+                    commonName: country.commonName,
+                    officialName: country.officialName,
+                    nativeName: country.nativeName,
+                    population: country.population,
+                    capital: country.capital,
+                    region: country.region,
+                    subRegion: country.subRegion,
+                    topLevelDomain: country.topLevelDomain,
+                    languages: country.languages,
+                    currencies: country.currencies,
+                    flag: country.flag,
+                    id: crypto.randomUUID(),
+                    borders: country.borders
+                })
+                return setCountryDetails(detailContainer)
+            }
+
+            else {
+                return null
+            }
+        })
+    }
+
     return (
         <>
         <main className={`allContent details${detailState} dark${props.dark}`}>
@@ -115,19 +141,22 @@ const Content = (props) => {
                     <button className={`dropDownBtn dark${props.dark}`} onClick={() => setMenuState(!menuState)}>{(filterState == 'none') ?  "Filter by Region" : filterState}{props.dark ? <FontAwesomeIcon icon={faCaretDown} style={{color: "#ffffff"}} className={`caretDown rotate${!menuState}`}/> : <FontAwesomeIcon icon={faCaretDown} style={{color: "#111517"}} className={`caretDown rotate${!menuState}`}/>}
                     { menuState ? 
                     <ul className={`dropDownMenu dark${props.dark}`}>
+                        {!(filterState == 'none') ? <li onClick={() => setFilterState('none')}>All</li> : null} 
                             <li onClick={() => setFilterState('Africa')}>Africa</li>
-                            <li onClick={() => setFilterState('America')}>America</li>
+                            <li onClick={() => setFilterState('Americas')}>America</li>
                             <li onClick={() => setFilterState('Asia')}>Asia</li>
                             <li onClick={() => setFilterState('Europe')}>Europe</li>
                             <li onClick={() => setFilterState('Oceania')}>Oceania</li>
-                        {!(filterState == 'none') ? <li onClick={() => setFilterState('none')}>No Filter</li> : null} 
+                        
                     </ul>
                         : null}    
                         
                     </button>
                 </section>
 
-                <ul className={`listSection dark${props.dark}`}>
+                {(filterState == "none") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
                     {countryList.map(country => {
                         return (<li key={country.id} onClick={() => handleMainClick(country)}>
                         <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
@@ -139,10 +168,136 @@ const Content = (props) => {
                         </div>
                     </li>)
                     })}
-                    
-                    
-                    
                 </ul>
+                : null}
+
+
+                {(filterState == "Africa") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
+                    {countryList.map(country => {
+                        if (country.region == "Africa"){
+                            return (<li key={country.id} onClick={() => handleMainClick(country)}>
+                            <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
+                            <div className='countryInfo'>
+                                <h2>{country.commonName}</h2>
+                                <p><strong>Population:</strong> {country.population}</p>
+                                <p><strong>Region:</strong> {country.region}</p>
+                                <p><strong>Capital:</strong> {country.capital}</p>
+                            </div>
+                        </li>)
+                        }
+
+                        else {
+                            return null
+                        }
+                        
+                    })}
+                </ul>
+                : null}
+
+
+                {(filterState == "Americas") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
+                    {countryList.map(country => {
+                        if (country.region == "Americas"){
+                            return (<li key={country.id} onClick={() => handleMainClick(country)}>
+                            <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
+                            <div className='countryInfo'>
+                                <h2>{country.commonName}</h2>
+                                <p><strong>Population:</strong> {country.population}</p>
+                                <p><strong>Region:</strong> {country.region}</p>
+                                <p><strong>Capital:</strong> {country.capital}</p>
+                            </div>
+                        </li>)
+                        }
+
+                        else {
+                            return null
+                        }
+                        
+                    })}
+                </ul>
+                : null}
+                
+
+                {(filterState == "Europe") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
+                    {countryList.map(country => {
+                        if (country.region == "Europe"){
+                            return (<li key={country.id} onClick={() => handleMainClick(country)}>
+                            <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
+                            <div className='countryInfo'>
+                                <h2>{country.commonName}</h2>
+                                <p><strong>Population:</strong> {country.population}</p>
+                                <p><strong>Region:</strong> {country.region}</p>
+                                <p><strong>Capital:</strong> {country.capital}</p>
+                            </div>
+                        </li>)
+                        }
+
+                        else {
+                            return null
+                        }
+                        
+                    })}
+                </ul>
+                : null}
+
+
+                {(filterState == "Asia") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
+                    {countryList.map(country => {
+                        if (country.region == "Asia"){
+                            return (<li key={country.id} onClick={() => handleMainClick(country)}>
+                            <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
+                            <div className='countryInfo'>
+                                <h2>{country.commonName}</h2>
+                                <p><strong>Population:</strong> {country.population}</p>
+                                <p><strong>Region:</strong> {country.region}</p>
+                                <p><strong>Capital:</strong> {country.capital}</p>
+                            </div>
+                        </li>)
+                        }
+
+                        else {
+                            return null
+                        }
+                        
+                    })}
+                </ul>
+                : null}
+
+
+
+                {(filterState == "Oceania") ? <ul className={`listSection dark${props.dark}`}>
+                    
+
+                    {countryList.map(country => {
+                        if (country.region == "Oceania"){
+                            return (<li key={country.id} onClick={() => handleMainClick(country)}>
+                            <div className='flagsContainer'><div className='innerFlags'>{country.flag}</div></div>
+                            <div className='countryInfo'>
+                                <h2>{country.commonName}</h2>
+                                <p><strong>Population:</strong> {country.population}</p>
+                                <p><strong>Region:</strong> {country.region}</p>
+                                <p><strong>Capital:</strong> {country.capital}</p>
+                            </div>
+                        </li>)
+                        }
+
+                        else {
+                            return null
+                        }
+                        
+                    })}
+                </ul>
+                : null}
+
+
             </div>
             {(countryDetails == "") ? null : 
             <div className={`focusedView details${detailState} none${display}`}>
@@ -153,7 +308,7 @@ const Content = (props) => {
             <section className='detailsSection'>
                 <div className='detailImageSection'><div className='detailInnerImage'>{countryDetails.flag}</div></div>
                 <div className={`detailContentSection dark${props.dark}`}>
-                    <h1>Country Name</h1>
+                    <h1>{countryDetails.commonName}</h1>
                     <div className='detailedInfo'>
                         <div className='detailPart1'>
                             <p><strong>Native Name:</strong> {countryDetails.nativeName}</p>
@@ -173,12 +328,9 @@ const Content = (props) => {
                        {(countryDetails.borders === undefined) ? null : 
                        <div className='bordersContainer'>
                        {countryDetails.borders.map(items => {
-                          return <button className={`borderCountries dark${props.dark}`}>{items}</button>
+                          return <button onClick={() => handleBorders(items)} className={`borderCountries dark${props.dark}`}>{items}</button>
                        })}
                        </div>} 
-                        
-                        
-                        
                     </div>
                 </div>
             </section>

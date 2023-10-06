@@ -236,6 +236,7 @@
     align-items: flex-start;
     gap: 0.7rem;
     position: absolute;
+    z-index: 99;
     width: 100%;
     background-color: white;
     padding: 0px;
