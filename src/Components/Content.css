@@ -1,3 +1,8 @@
+.completeConainer,body {
+    overflow-y: hidden;
+}
+
+
 .allContent {
     width: 100vw;
     height: 100vh;
@@ -25,10 +30,11 @@
 .focusedView {
     position: absolute;
     width: 100%;
-    height: max-content;
+    height: 180vh!important;
     transition: 300ms;
     transform: translateX(100%);
-    padding-bottom: 5rem !important;
+    margin-bottom: 10rem !important;
+    overflow-y: scroll !important;
 }
 
 .focusedView.detailstrue {
@@ -308,7 +314,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10rem;
-    margin-top: 6rem;
+    margin-top: 3rem;
 }
 
 @media (max-width: 1510px) {
@@ -411,11 +417,11 @@
 @media (max-width: 650px) {
 
     .detailInnerImage {
-        font-size: 20rem;
+        font-size: 10rem;
     }
 
     .innerFlags {
-        font-size: 20rem;
+        font-size: 10rem;
     }
 
     .focusedView {
